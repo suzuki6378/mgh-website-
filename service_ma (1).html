@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M&A事業 | 株式会社MGH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1A2744; --gold: #C9A84C; --cream: #F7F5F0;
+      --text: #2C2C2A; --text-muted: #888780;
+      --border: rgba(60,60,58,0.12); --bg-section: #F9F8F5;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: #fff; font-size: 15px; line-height: 1.7; }
+    .header { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 0.5px solid var(--border); }
+    .nav-top { display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; gap: 32px; }
+    .nav-logo { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 600; color: var(--navy); letter-spacing: 1px; text-decoration: none; flex-shrink: 0; }
+    .nav-links { display: flex; list-style: none; align-items: center; flex: 1; justify-content: center; }
+    .nav-links li { display: flex; align-items: center; }
+    .nav-links li + li::before { content: '|'; color: #ccc; font-size: 13px; padding: 0 4px; }
+    .nav-links a { display: block; padding: 8px 18px; font-size: 13px; color: #2C2C2A; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { display: inline-block; padding: 10px 28px; background: var(--gold); color: var(--navy); font-size: 13px; font-weight: 500; border-radius: 4px; text-decoration: none; flex-shrink: 0; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; }
+    .breadcrumb { padding: 14px 48px; font-size: 12px; color: var(--text-muted); border-bottom: 0.5px solid var(--border); display: flex; gap: 8px; align-items: center; }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .hero { background: var(--navy); padding: 80px 48px 72px; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; right: -20px; bottom: -40px; font-family: 'Noto Serif JP', serif; font-size: 200px; font-weight: 600; color: rgba(255,255,255,0.03); letter-spacing: -8px; user-select: none; line-height: 1; pointer-events: none; }
+    .hero-inner { position: relative; max-width: 640px; }
+    .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+    .hero-title { font-family: 'Noto Serif JP', serif; font-size: 32px; font-weight: 600; color: var(--cream); line-height: 1.5; margin-bottom: 16px; }
+    .hero-sub { font-size: 14px; font-weight: 300; color: rgba(247,245,240,0.58); line-height: 2; }
+    .hero-tags { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+    .hero-tag { padding: 5px 14px; border: 0.5px solid rgba(201,168,76,0.5); border-radius: 20px; font-size: 12px; color: var(--gold); letter-spacing: 0.5px; }
+    .section { padding: 64px 48px; }
+    .section-alt { background: var(--bg-section); }
+    .section-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-family: 'Noto Serif JP', serif; font-size: 24px; font-weight: 600; color: var(--navy); margin-bottom: 32px; padding-bottom: 16px; border-bottom: 0.5px solid var(--border); }
+    .overview-text { font-size: 15px; line-height: 2.1; color: var(--text); max-width: 720px; }
+    .point-tags { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+    .point-tag { display: flex; align-items: center; gap: 8px; padding: 10px 18px; background: #fff; border: 0.5px solid var(--border); border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; font-size: 13px; font-weight: 500; color: var(--navy); }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .feature-card { background: #fff; border: 0.5px solid var(--border); border-top: 3px solid var(--gold); border-radius: 12px; padding: 28px 24px; }
+    .feature-num { font-family: 'Noto Serif JP', serif; font-size: 36px; font-weight: 600; color: rgba(201,168,76,0.25); line-height: 1; margin-bottom: 12px; }
+    .feature-title { font-size: 15px; font-weight: 500; color: var(--navy); margin-bottom: 10px; line-height: 1.5; }
+    .feature-text { font-size: 13px; color: var(--text-muted); line-height: 1.9; }
+    .merit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .merit-card { border-radius: 12px; padding: 32px 28px; }
+    .merit-card.seller { background: var(--navy); }
+    .merit-card.buyer { background: #fff; border: 0.5px solid var(--border); }
+    .merit-label { font-size: 11px; font-weight: 500; letter-spacing: 3px; margin-bottom: 12px; }
+    .merit-card.seller .merit-label { color: var(--gold); }
+    .merit-card.buyer .merit-label { color: var(--gold); }
+    .merit-title { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 600; margin-bottom: 20px; line-height: 1.5; }
+    .merit-card.seller .merit-title { color: var(--cream); }
+    .merit-card.buyer .merit-title { color: var(--navy); }
+    .merit-list { display: flex; flex-direction: column; gap: 12px; }
+    .merit-item { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.8; }
+    .merit-card.seller .merit-item { color: rgba(247,245,240,0.75); }
+    .merit-card.buyer .merit-item { color: var(--text-muted); }
+    .merit-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 7px; }
+    .process-list { display: flex; flex-direction: column; max-width: 720px; }
+    .process-item { display: grid; grid-template-columns: 64px 1fr; gap: 24px; padding: 28px 0; border-bottom: 0.5px solid var(--border); align-items: start; }
+    .process-item:first-child { border-top: 0.5px solid var(--border); }
+    .process-step { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 600; color: var(--gold); line-height: 1; padding-top: 4px; }
+    .process-title { font-size: 15px; font-weight: 500; color: var(--navy); margin-bottom: 8px; }
+    .process-text { font-size: 13px; color: var(--text-muted); line-height: 1.9; }
+    .other-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .other-card { background: #fff; border: 0.5px solid var(--border); border-radius: 12px; padding: 20px; text-decoration: none; transition: border-color 0.2s; display: block; }
+    .other-card:hover { border-color: var(--gold); }
+    .other-label { font-size: 11px; letter-spacing: 2px; color: var(--gold); margin-bottom: 8px; }
+    .other-name { font-size: 14px; font-weight: 500; color: var(--navy); }
+    .cta-section { background: var(--navy); padding: 64px 48px; text-align: center; }
+    .cta-title { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 600; color: var(--cream); margin-bottom: 10px; }
+    .cta-sub { font-size: 13px; color: rgba(247,245,240,0.55); margin-bottom: 28px; line-height: 1.9; }
+    .cta-btn { display: inline-block; padding: 14px 40px; background: var(--gold); color: var(--navy); font-size: 13px; font-weight: 500; border-radius: 4px; text-decoration: none; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+    .footer { text-align: center; padding: 24px 48px; font-size: 12px; color: var(--text-muted); border-top: 0.5px solid var(--border); }
+    @media (max-width: 768px) {
+      .nav-top { padding: 0 20px; } .nav-links { display: none; }
+      .hero { padding: 56px 24px 48px; } .hero-title { font-size: 24px; }
+      .section { padding: 48px 24px; } .breadcrumb { padding: 12px 20px; }
+      .merit-grid { grid-template-columns: 1fr; }
+      .process-item { grid-template-columns: 48px 1fr; }
+      .cta-section { padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="nav-top">
+      <a href="index.html" class="nav-logo">MGH</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="index.html#news">お知らせ</a></li>
+          <li><a href="index.html#services">サービス紹介</a></li>
+          <li><a href="index.html#about">会社概要</a></li>
+        </ul>
+      </nav>
+      <a href="index.html#contact" class="nav-cta">お問い合わせ</a>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <a href="index.html">ホーム</a>
+    <span>›</span>
+    <a href="index.html#services">サービス紹介</a>
+    <span>›</span>
+    <span style="color:var(--text);">M&A事業</span>
+  </div>
+
+  <section class="hero">
+    <div class="hero-bg">M&A</div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">M&A</div>
+      <h1 class="hero-title">旅館・ホテル特化型<br>M&Aサービス</h1>
+      <p class="hero-sub">自社で旅館を直営し、運営受諾も手がけるMGHだからこそ、<br>売り手・買い手それぞれに本質的な価値を提供できます。</p>
+      <div class="hero-tags">
+        <span class="hero-tag">完全成功報酬型</span>
+        <span class="hero-tag">初回相談無料</span>
+        <span class="hero-tag">秘密厳守</span>
+        <span class="hero-tag">個別対応</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-eyebrow">Overview</div>
+    <h2 class="section-title">サービス概要</h2>
+    <p class="overview-text">MGHは旅館・ホテルを自社で直営するとともに、複数施設の運営受諾実績を持つ会社です。この現場経験こそが、他のM&A仲介会社との最大の違いです。単なるマッチングに留まらず、施設の現状把握・事業価値の評価・バリューアップ戦略まで、運営者の目線で一貫してサポートします。事業承継・後継者問題から、施設の売却・取得まで、旅館・ホテルに関わるM&Aのあらゆるニーズに対応します。</p>
+    <div class="point-tags">
+      <div class="point-tag">売り手・買い手双方に対応</div>
+      <div class="point-tag">事業承継・後継者問題</div>
+      <div class="point-tag">バリューアップ支援</div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="section-eyebrow">Features</div>
+    <h2 class="section-title">MGHが選ばれる理由</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-title">旅館・ホテル特化の専門知識</div>
+        <p class="feature-text">旅館・ホテルの直営と運営受諾を通じて培った現場知識を持つMGHだからこそ、施設の本質的な価値と課題を正確に見極めることができます。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-title">完全成功報酬型・初回相談無料</div>
+        <p class="feature-text">成約まで費用は一切いただきません。まずは気軽にご相談ください。秘密保持を徹底し、個別の状況に合わせた丁寧な対応をお約束します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-title">ニーズに応じた柔軟な提案</div>
+        <p class="feature-text">即時売却から、運営を通じた実績づくり・バリューアップ後の売却まで、オーナーのご要望に合わせた多彩な選択肢を提案できます。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">04</div>
+        <div class="feature-title">深い調査力と、誠実な対話</div>
+        <p class="feature-text">財務・市場・競合・立地・運営実態まで多角的にリサーチし、表面的な数字では見えない本質的な価値を掘り起こします。そのうえで、お客様一人ひとりと丁寧に向き合い、納得感のある意思決定をともに築きます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-eyebrow">For Seller & Buyer</div>
+    <h2 class="section-title">売り手・買い手それぞれのメリット</h2>
+    <div class="merit-grid">
+      <div class="merit-card seller">
+        <div class="merit-label">For Seller — 売り手の方へ</div>
+        <div class="merit-title">ニーズに応じた<br>最適な売却戦略を</div>
+        <div class="merit-list">
+          <div class="merit-item">
+            <div class="merit-dot"></div>
+            <span>即時売却はもちろん、まず運営を立て直してから売却するなど、状況に合わせた複数の選択肢をご提案します。</span>
+          </div>
+          <div class="merit-item">
+            <div class="merit-dot"></div>
+            <span>運営受諾実績を持つMGHが施設に入り、実績・収益を積み上げてからの売却（バリューアップ売却）も対応可能です。</span>
+          </div>
+          <div class="merit-item">
+            <div class="merit-dot"></div>
+            <span>旅館再生の実績があるからこそ、施設の潜在価値を最大限に引き出すサポートが可能です。</span>
+          </div>
+        </div>
+      </div>
+      <div class="merit-card buyer">
+        <div class="merit-label">For Buyer — 買い手の方へ</div>
+        <div class="merit-title">現場視点の深い<br>デューデリジェンスを</div>
+        <div class="merit-list">
+          <div class="merit-item">
+            <div class="merit-dot"></div>
+            <span>複数施設の運営受諾実績を持つMGHが、購入前の物件に対して現場目線の詳細なDD（デューデリジェンス）を実施します。</span>
+          </div>
+          <div class="merit-item">
+            <div class="merit-dot"></div>
+            <span>取得後の事業計画策定から収益改善シナリオ、今後の伸び代を含めた成長戦略まで、運営者ならではの視点で提案します。</span>
+          </div>
+          <div class="merit-item">
+            <div class="merit-dot"></div>
+            <span>直営・運営受諾・売却など、取得後の出口戦略を見据えた多角的なアドバイスが可能です。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="section-eyebrow">Process</div>
+    <h2 class="section-title">ご支援の流れ</h2>
+    <div class="flow-list">
+
+      <div class="flow-item">
+        <div class="flow-num-col">
+          <div class="flow-circle"><span>01</span></div>
+          <div class="flow-line"></div>
+        </div>
+        <div class="flow-icon-col">
+          <div class="flow-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+        </div>
+        <div class="flow-body">
+          <div class="flow-label">Step 01</div>
+          <div class="flow-title">初回ご相談（無料）</div>
+          <p class="flow-text">現状のお悩みやご要望を丁寧にお伺いします。秘密保持契約を締結の上、安心してご相談いただけます。</p>
+          <div class="flow-tags"><span class="flow-tag">秘密厳守</span><span class="flow-tag">無料</span></div>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-num-col">
+          <div class="flow-circle"><span>02</span></div>
+          <div class="flow-line"></div>
+        </div>
+        <div class="flow-icon-col">
+          <div class="flow-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+        </div>
+        <div class="flow-body">
+          <div class="flow-label">Step 02</div>
+          <div class="flow-title">現状分析・価値評価</div>
+          <p class="flow-text">施設の財務状況・稼働状況・市場環境を分析し、適正な事業価値を算出。運営者視点でのバリューアップ余地も併せてご提示します。</p>
+          <div class="flow-tags"><span class="flow-tag">現場目線のDD</span><span class="flow-tag">バリューアップ算定</span></div>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-num-col">
+          <div class="flow-circle"><span>03</span></div>
+          <div class="flow-line"></div>
+        </div>
+        <div class="flow-icon-col">
+          <div class="flow-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+        </div>
+        <div class="flow-body">
+          <div class="flow-label">Step 03</div>
+          <div class="flow-title">戦略提案・マッチング</div>
+          <p class="flow-text">売却・承継・バリューアップなど、最適な戦略をご提案。売り手・買い手双方のニーズに合ったマッチングを進めます。</p>
+          <div class="flow-tags"><span class="flow-tag">複数シナリオ提案</span><span class="flow-tag">売り手・買い手対応</span></div>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-num-col">
+          <div class="flow-circle"><span>04</span></div>
+          <div class="flow-line"></div>
+        </div>
+        <div class="flow-icon-col">
+          <div class="flow-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+        </div>
+        <div class="flow-body">
+          <div class="flow-label">Step 04</div>
+          <div class="flow-title">交渉・契約支援</div>
+          <p class="flow-text">条件交渉から最終契約まで一貫してサポート。専門家（弁護士・税理士等）と連携しながら、円滑なクロージングを目指します。</p>
+          <div class="flow-tags"><span class="flow-tag">専門家連携</span><span class="flow-tag">条件交渉</span></div>
+        </div>
+      </div>
+
+      <div class="flow-item">
+        <div class="flow-num-col">
+          <div class="flow-circle"><span>05</span></div>
+          <div class="flow-line" style="background:transparent;"></div>
+        </div>
+        <div class="flow-icon-col">
+          <div class="flow-icon" style="background:rgba(26,39,68,0.08);">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+        </div>
+        <div class="flow-body">
+          <div class="flow-label">Step 05</div>
+          <div class="flow-title">成約後のフォロー</div>
+          <p class="flow-text">成約後も引き続きサポート。運営移管・事業統合のプロセスでも、現場経験を活かした実務支援を行います。</p>
+          <div class="flow-tags"><span class="flow-tag">アフターフォロー</span><span class="flow-tag">運営移管支援</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-eyebrow">Other Services</div>
+    <h2 class="section-title">その他のサービス</h2>
+    <div class="other-grid">
+      <a href="service_consulting.html" class="other-card">
+        <div class="other-label">Consulting</div>
+        <div class="other-name">経営・戦略コンサルティング</div>
+      </a>
+      <a href="service_realestate.html" class="other-card">
+        <div class="other-label">Real Estate</div>
+        <div class="other-name">不動産事業</div>
+      </a>
+      <a href="service_beauty.html" class="other-card">
+        <div class="other-label">Beauty</div>
+        <div class="other-name">美容事業</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-title">まずは無料相談からはじめましょう</div>
+    <p class="cta-sub">旅館・ホテルのM&Aに関するご相談は、どんな小さなことでも構いません。<br>秘密厳守・完全成功報酬でサポートします。</p>
+    <a href="index.html#contact" class="cta-btn">無料相談を申し込む</a>
+  </section>
+
+  <footer class="footer">&copy; 2025 MGH Co., Ltd. All rights reserved.</footer>
+
+</body>
+</html>
