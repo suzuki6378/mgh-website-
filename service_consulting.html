@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>経営・戦略コンサルティング | 株式会社MGH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1A2744;
+      --gold: #C9A84C;
+      --cream: #F7F5F0;
+      --text: #2C2C2A;
+      --text-muted: #888780;
+      --border: rgba(60,60,58,0.12);
+      --bg-section: #F9F8F5;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: #fff; font-size: 15px; line-height: 1.7; }
+
+    /* Nav */
+    .header { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 0.5px solid var(--border); }
+    .nav-top { display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; gap: 32px; }
+    .nav-logo { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 600; color: var(--navy); letter-spacing: 1px; text-decoration: none; flex-shrink: 0; }
+    .nav-links { display: flex; list-style: none; align-items: center; flex: 1; justify-content: center; }
+    .nav-links li { display: flex; align-items: center; }
+    .nav-links li + li::before { content: '|'; color: #ccc; font-size: 13px; padding: 0 4px; }
+    .nav-links a { display: block; padding: 8px 18px; font-size: 13px; color: #2C2C2A; text-decoration: none; letter-spacing: 0.5px; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { display: inline-block; padding: 10px 28px; background: var(--gold); color: var(--navy); font-size: 13px; font-weight: 500; border-radius: 4px; text-decoration: none; letter-spacing: 1px; flex-shrink: 0; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* Breadcrumb */
+    .breadcrumb { padding: 14px 48px; font-size: 12px; color: var(--text-muted); border-bottom: 0.5px solid var(--border); display: flex; gap: 8px; align-items: center; }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { color: #ccc; }
+
+    /* Hero */
+    .hero { background: var(--navy); padding: 80px 48px 72px; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; right: -20px; bottom: -40px; font-family: 'Noto Serif JP', serif; font-size: 200px; font-weight: 600; color: rgba(255,255,255,0.03); letter-spacing: -8px; user-select: none; line-height: 1; pointer-events: none; }
+    .hero-inner { position: relative; max-width: 640px; }
+    .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+    .hero-title { font-family: 'Noto Serif JP', serif; font-size: 32px; font-weight: 600; color: var(--cream); line-height: 1.5; margin-bottom: 16px; }
+    .hero-sub { font-size: 14px; font-weight: 300; color: rgba(247,245,240,0.58); line-height: 2; }
+
+    /* Section */
+    .section { padding: 64px 48px; }
+    .section-alt { background: var(--bg-section); }
+    .section-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-family: 'Noto Serif JP', serif; font-size: 24px; font-weight: 600; color: var(--navy); margin-bottom: 32px; padding-bottom: 16px; border-bottom: 0.5px solid var(--border); }
+
+    /* Overview */
+    .overview-text { font-size: 15px; line-height: 2.1; color: var(--text); max-width: 720px; }
+
+    /* Features */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .feature-card { background: #fff; border: 0.5px solid var(--border); border-top: 3px solid var(--gold); border-radius: 12px; padding: 28px 24px; }
+    .feature-num { font-family: 'Noto Serif JP', serif; font-size: 36px; font-weight: 600; color: rgba(201,168,76,0.25); line-height: 1; margin-bottom: 12px; }
+    .feature-title { font-size: 15px; font-weight: 500; color: var(--navy); margin-bottom: 10px; line-height: 1.5; }
+    .feature-text { font-size: 13px; color: var(--text-muted); line-height: 1.9; }
+
+    /* Process */
+    .process-list { display: flex; flex-direction: column; gap: 0; max-width: 720px; }
+    .process-item { display: grid; grid-template-columns: 64px 1fr; gap: 24px; padding: 28px 0; border-bottom: 0.5px solid var(--border); align-items: start; }
+    .process-item:first-child { border-top: 0.5px solid var(--border); }
+    .process-step { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 600; color: var(--gold); line-height: 1; padding-top: 4px; }
+    .process-content {}
+    .process-title { font-size: 15px; font-weight: 500; color: var(--navy); margin-bottom: 8px; }
+    .process-text { font-size: 13px; color: var(--text-muted); line-height: 1.9; }
+
+    /* CTA */
+    .cta-section { background: var(--navy); padding: 64px 48px; text-align: center; }
+    .cta-title { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 600; color: var(--cream); margin-bottom: 10px; }
+    .cta-sub { font-size: 13px; color: rgba(247,245,240,0.55); margin-bottom: 28px; line-height: 1.9; }
+    .cta-btn { display: inline-block; padding: 14px 40px; background: var(--gold); color: var(--navy); font-size: 13px; font-weight: 500; border-radius: 4px; text-decoration: none; letter-spacing: 1px; transition: opacity 0.2s; }
+    .cta-btn:hover { opacity: 0.85; }
+
+    /* Footer */
+    .footer { text-align: center; padding: 24px 48px; font-size: 12px; color: var(--text-muted); border-top: 0.5px solid var(--border); }
+
+    /* Other services */
+    .other-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .other-card { background: #fff; border: 0.5px solid var(--border); border-radius: 12px; padding: 20px; text-decoration: none; transition: border-color 0.2s; display: block; }
+    .other-card:hover { border-color: var(--gold); }
+    .other-label { font-size: 11px; letter-spacing: 2px; color: var(--gold); margin-bottom: 8px; }
+    .other-name { font-size: 14px; font-weight: 500; color: var(--navy); line-height: 1.5; }
+
+    @media (max-width: 768px) {
+      .nav-top { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 56px 24px 48px; }
+      .hero-title { font-size: 24px; }
+      .section { padding: 48px 24px; }
+      .breadcrumb { padding: 12px 20px; }
+      .cta-section { padding: 48px 24px; }
+      .process-item { grid-template-columns: 48px 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <header class="header">
+    <div class="nav-top">
+      <a href="index.html" class="nav-logo">MGH</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="index.html#news">お知らせ</a></li>
+          <li><a href="index.html#services">サービス紹介</a></li>
+          <li><a href="index.html#about">会社概要</a></li>
+        </ul>
+      </nav>
+      <a href="index.html#contact" class="nav-cta">お問い合わせ</a>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="index.html">ホーム</a>
+    <span>›</span>
+    <a href="index.html#services">サービス紹介</a>
+    <span>›</span>
+    <span style="color: var(--text);">経営・戦略コンサルティング</span>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg">MGH</div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Consulting</div>
+      <h1 class="hero-title">経営・戦略<br>コンサルティング</h1>
+      <p class="hero-sub">お客様の経営課題に正面から向き合い、<br>戦略立案から実行まで、ともに歩みます。</p>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="section">
+    <div class="section-eyebrow">Overview</div>
+    <h2 class="section-title">サービス概要</h2>
+    <p class="overview-text">（テキストを差し替えてください）経営環境が急速に変化する中、明確な戦略と実行力が企業の成長を左右します。MGHは、現状分析・課題整理から戦略策定・実行支援まで、お客様に寄り添いながら伴走型のコンサルティングを提供します。</p>
+  </section>
+
+  <!-- Features -->
+  <section class="section section-alt">
+    <div class="section-eyebrow">Features</div>
+    <h2 class="section-title">MGHが選ばれる理由</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-title">（特徴タイトルを差し替え）</div>
+        <p class="feature-text">（特徴の説明文を差し替えてください。強みや他社との違いを記載します。）</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-title">（特徴タイトルを差し替え）</div>
+        <p class="feature-text">（特徴の説明文を差し替えてください。強みや他社との違いを記載します。）</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-title">（特徴タイトルを差し替え）</div>
+        <p class="feature-text">（特徴の説明文を差し替えてください。強みや他社との違いを記載します。）</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section">
+    <div class="section-eyebrow">Process</div>
+    <h2 class="section-title">ご支援の流れ</h2>
+    <div class="process-list">
+      <div class="process-item">
+        <div class="process-step">01</div>
+        <div class="process-content">
+          <div class="process-title">初回ご相談・ヒアリング</div>
+          <p class="process-text">現状の課題・ご要望を丁寧にお伺いします。初回相談は無料です。</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-step">02</div>
+        <div class="process-content">
+          <div class="process-title">現状分析・課題整理</div>
+          <p class="process-text">（内容を差し替えてください）財務・組織・市場など多角的な視点から現状を分析し、本質的な課題を整理します。</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-step">03</div>
+        <div class="process-content">
+          <div class="process-title">戦略立案・ご提案</div>
+          <p class="process-text">（内容を差し替えてください）お客様の状況に最適な戦略をご提案。実現可能性を重視したプランを作成します。</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-step">04</div>
+        <div class="process-content">
+          <div class="process-title">実行支援・伴走</div>
+          <p class="process-text">（内容を差し替えてください）策定した戦略の実行フェーズでも継続的にサポート。PDCAを回しながら成果を追求します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other services -->
+  <section class="section section-alt">
+    <div class="section-eyebrow">Other Services</div>
+    <h2 class="section-title">その他のサービス</h2>
+    <div class="other-grid">
+      <a href="service_ma.html" class="other-card">
+        <div class="other-label">M&A</div>
+        <div class="other-name">M&A事業</div>
+      </a>
+      <a href="service_realestate.html" class="other-card">
+        <div class="other-label">Real Estate</div>
+        <div class="other-name">不動産事業</div>
+      </a>
+      <a href="service_beauty.html" class="other-card">
+        <div class="other-label">Beauty</div>
+        <div class="other-name">美容事業</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-title">まずはお気軽にご相談ください</div>
+    <p class="cta-sub">どんな小さなご相談でも、真剣に向き合います。</p>
+    <a href="index.html#contact" class="cta-btn">お問い合わせ</a>
+  </section>
+
+  <footer class="footer">&copy; 2025 MGH Co., Ltd. All rights reserved.</footer>
+
+</body>
+</html>
